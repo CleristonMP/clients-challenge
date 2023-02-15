@@ -3,11 +3,9 @@ package com.cmp.clientschallenge.services;
 import com.cmp.clientschallenge.dtos.ClientDTO;
 import com.cmp.clientschallenge.entities.Client;
 import com.cmp.clientschallenge.repositories.ClientRepository;
-import com.cmp.clientschallenge.services.exceptions.DatabaseException;
 import com.cmp.clientschallenge.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -61,9 +59,6 @@ public class ClientService {
         }
         catch (EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException("Recurso não encontrado");
-        }
-        catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Violação de integridade referencial");
         }
     }
 
